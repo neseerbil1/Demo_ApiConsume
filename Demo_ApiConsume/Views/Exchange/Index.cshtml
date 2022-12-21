@@ -1,0 +1,24 @@
+﻿@model IEnumerable<ExchangeViewListModel.Exchange_Rates>
+
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<div class="container">
+    <br />
+    <table class="table table-striped">
+        <tr>
+            <th>Döviz Kodu</th>
+            <th>Kur Tutarı</th>           
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.currency</td>
+                <td>@item.exchange_rate_buy</td>                              
+            </tr>
+        }
+    </table>
+</div>
+@*IEnumarable:bir sınıfın içinde array dönüyorsa ve ya bir view içinde birden fazla sınıf varsa*@
