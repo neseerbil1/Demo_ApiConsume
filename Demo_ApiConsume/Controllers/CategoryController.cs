@@ -26,7 +26,7 @@ namespace Demo_ApiConsume.Controllers
             //responseMessage adresin içine ulaşabiliyorsa
             if (responseMessage.StatusCode == System.Net.HttpStatusCode.OK)
             { 
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();               
                 //json yapısı nesne formatına dönüştürülüyor
                 var results = JsonConvert.DeserializeObject<List<CategoryResponseModel>>(jsonData);
                 return View(results);
@@ -41,9 +41,10 @@ namespace Demo_ApiConsume.Controllers
         [HttpPost]
         public async Task<IActionResult> AddCategory(CategoryResponseModel p)
         {
-            var client = _httpClientFactory.CreateClient();
+            var client = _httpClientFactory.CreateClient();            
             //nesne formatı json yapısına dönüştürülüyor
             var jsonData =JsonConvert.SerializeObject(p);
+            
             StringContent content =new StringContent(jsonData,Encoding.UTF8,"application/json");
             //PostAsync metodu kullanıldığında HttpPost attribitune gerek kalmıyor
             var responseMessage = await client.PostAsync("http://localhost:55785/api/Category", content);
@@ -91,12 +92,12 @@ namespace Demo_ApiConsume.Controllers
             var responseMessage = await client.PutAsync("http://localhost:55785/api/Category", content);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index");   
             }
             else
             {
-                return View();
-            }
+                return View(); 
+            } 
         }
 
     }
