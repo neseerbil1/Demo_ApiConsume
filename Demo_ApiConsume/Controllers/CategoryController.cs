@@ -43,8 +43,7 @@ namespace Demo_ApiConsume.Controllers
         {
             var client = _httpClientFactory.CreateClient();            
             //nesne formatı json yapısına dönüştürülüyor
-            var jsonData =JsonConvert.SerializeObject(p);
-            
+            var jsonData =JsonConvert.SerializeObject(p);            
             StringContent content =new StringContent(jsonData,Encoding.UTF8,"application/json");
             //PostAsync metodu kullanıldığında HttpPost attribitune gerek kalmıyor
             var responseMessage = await client.PostAsync("http://localhost:55785/api/Category", content);
